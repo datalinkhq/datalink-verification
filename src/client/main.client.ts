@@ -15,9 +15,11 @@ kickEvent.OnClientEvent.Connect(() => {
 print("Welcome" + " " + playerService.LocalPlayer.DisplayName + "!");
 
 
+wait(5)
 if (validate(playerService.LocalPlayer) === true) {
     print("User" + " " + playerService.LocalPlayer.DisplayName + " " + "owns the gamepass.");
     print("Validating User...")
+    print($env("PRODUCTION"))
     if ($env("PRODUCTION") === "true") {
         const HttpService = game.GetService("HttpService");
         const HttpResponse = HttpService.PostAsync("https://verify.datalink.dev/validate", `{ "id": ${playerService.LocalPlayer.UserId}, "status": true, "secret": "hi" }`);
